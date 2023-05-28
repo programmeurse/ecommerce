@@ -4,6 +4,9 @@ from pathlib import Path
 
 import os
 
+from decouple import config
+
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,7 +14,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 
-SECRET_KEY ='django-insecure-ylkuh*yq_2jef328+y_jf_y#ini(0q34q%8t&(rfa+(kqb5_@q'
+SECRET_KEY = config('SECRET_KEY')
 
 
 DEBUG = True
@@ -65,13 +68,16 @@ WSGI_APPLICATION = 'ECOM.wsgi.application'
 
 # Database
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+DATABASES = {
+    'default': dj_database_url.parse(config('DATABASE_URL'))
+}
 
 
 
