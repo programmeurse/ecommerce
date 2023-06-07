@@ -24,7 +24,7 @@ class Produit(models.Model):
     name = models.CharField(max_length=100, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     digital = models.BooleanField(default=False, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to='product', null=True, blank=True)
     date_ajout = models.DateTimeField(default=timezone.now)
 
     class Meta:
